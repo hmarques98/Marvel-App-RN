@@ -12,4 +12,5 @@ export interface Result {
 
 export interface IImage {
   path: string;
+  extension: string;
 }

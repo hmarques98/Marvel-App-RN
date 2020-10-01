@@ -1,23 +1,56 @@
 import React from "react";
-import { View, StyleSheet, StatusBar } from "react-native";
-import ListComics from "./components/ListComics/Index";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import ListCharacters from "./screens/StackScreens/ListCharacters";
+import Character from "./screens/StackScreens/Character";
+
+type RootStackParamList = {
+  ListCharacters: undefined;
+  Personagem: { name: string };
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 const Index = () => {
   return (
-    <View style={styles.container}>
-      <StatusBar backgroundColor="brown" />
-      <ListComics />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={() => ({
+          headerStyle: {
+            backgroundColor: "#f4511e",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        })}
+      >
+        <Stack.Screen
+          name="ListCharacters"
+          component={ListCharacters}
+          options={{
+            title: "Personagens",
+          }}
+        />
+        <Stack.Screen
+          name="Personagem"
+          component={Character}
+          options={({ route }) => ({
+            title: route.params.name,
+            headerStyle: {
+              backgroundColor: "#f4511e",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+          })}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(255,99,71 ,0.9 )",
-    width: "100%",
-  },
-});
 export default Index;
