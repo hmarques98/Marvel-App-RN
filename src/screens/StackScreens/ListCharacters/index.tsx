@@ -1,17 +1,17 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Platform, View, StyleSheet } from "react-native";
+import { Platform, View, StyleSheet, StatusBar } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-// import { Container } from './styles';
-
+import SafeAreaView from "react-native-safe-area-view";
 import ListComics from "../../../components/ListComics/Index";
 
-const ListCharacters = ({}) => {
+const ListCharacters = () => {
+  const { top } = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
-      <StatusBar backgroundColor="brown" />
+    <SafeAreaView style={[styles.container, { backgroundColor: "#E5E5E5" }]}>
+      <StatusBar barStyle="light-content" />
       <ListComics />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -20,9 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(255,99,71 ,0.9 )",
     width: "100%",
-    paddingTop: Platform.OS === "android" ? 28 : 4,
   },
 });
 

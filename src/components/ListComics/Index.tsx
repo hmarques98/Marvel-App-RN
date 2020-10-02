@@ -11,6 +11,8 @@ import { wait } from "../../utils/timer";
 import { Result } from "./interfaces";
 import BarUpdate from "../BarUpdate";
 
+import { FONT_800 } from "../../fonts/types";
+
 const ListComics = () => {
   const [comics, setComics] = useState<Result[]>([]);
 
@@ -41,10 +43,6 @@ const ListComics = () => {
   };
 
   useEffect(() => {
-    fetchApi();
-  }, []);
-  // call api when started
-  useEffect(() => {
     fetchApi(limit, offSet);
   }, [limit, offSet]);
   //call api again when state to change
@@ -53,39 +51,37 @@ const ListComics = () => {
 
   return (
     <View style={styles.container}>
-      <BarUpdate
-        lengthComics={comics.length}
-        offSet={offSet}
-        onRefresh={onRefresh}
-      />
       {comics.length > 0 ? (
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={() => <Seperators />}
-          refreshControl={
-            <RefreshControl refreshing={ŕefreshing} onRefresh={onRefresh} />
-          }
-          keyExtractor={(item: Result, index) => item.id.toString()}
-          data={comics}
-          renderItem={({ item, index, separators }) => (
-            <Comics
-              extensionImage={item.images.map((items) => items.extension)}
-              uriImageBackGround={item.images.map((items) => items.path)}
-              keyItemTouchable={item.id}
-              onPress={() => {
-                navigate("Personagem", {
-                  name: item.title,
-                  id: item.id,
-                });
-              }}
-              uriImageThumbnail={item.images.map((items) => items.path)}
-              seriesName={item.series.name}
-              creatorsName={item.creators.items.map(
-                (item: { name: string }) => item.name
-              )}
-            />
-          )}
-        />
+        <>
+          <BarUpdate onRefresh={onRefresh} />
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            ItemSeparatorComponent={() => <Seperators />}
+            refreshControl={
+              <RefreshControl refreshing={ŕefreshing} onRefresh={onRefresh} />
+            }
+            keyExtractor={(item: Result, index) => item.id.toString()}
+            data={comics}
+            renderItem={({ item, index, separators }) => (
+              <Comics
+                extensionImage={item.images.map((items) => items.extension)}
+                uriImageBackGround={item.images.map((items) => items.path)}
+                keyItemTouchable={item.id}
+                onPress={() => {
+                  navigate("Personagem", {
+                    name: item.title,
+                    id: item.id,
+                  });
+                }}
+                uriImageThumbnail={item.images.map((items) => items.path)}
+                seriesName={item.series.name}
+                creatorsName={item.creators.items.map(
+                  (item: { name: string }) => item.name
+                )}
+              />
+            )}
+          />
+        </>
       ) : (
         <Text style={styles.textUpdate}>Carregando. Aguarde!</Text>
       )}
@@ -98,10 +94,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(255,99,71 ,0.9 )",
     width: "100%",
   },
 
-  textUpdate: { color: "white", fontWeight: "bold", fontSize: 18 },
+  textUpdate: {
+    color: "#000",
+    fontSize: 24,
+    fontFamily: FONT_800,
+  },
 });
 export default ListComics;

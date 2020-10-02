@@ -1,6 +1,6 @@
 import React from "react";
-
-import { NavigationContainer } from "@react-navigation/native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import ListCharacters from "./screens/StackScreens/ListCharacters";
@@ -12,33 +12,13 @@ type RootStackParamList = {
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
-
 const Index = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={() => ({
-          headerStyle: {
-            backgroundColor: "#f4511e",
-          },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
-        })}
-      >
-        <Stack.Screen
-          name="ListCharacters"
-          component={ListCharacters}
-          options={{
-            title: "Personagens",
-          }}
-        />
-        <Stack.Screen
-          name="Personagem"
-          component={Character}
-          options={({ route }) => ({
-            title: route.params.name,
+    <SafeAreaProvider>
+      <NavigationContainer theme={DarkTheme}>
+        <Stack.Navigator
+          headerMode="none"
+          screenOptions={() => ({
             headerStyle: {
               backgroundColor: "#f4511e",
             },
@@ -46,10 +26,24 @@ const Index = () => {
             headerTitleStyle: {
               fontWeight: "bold",
             },
+            headerShown: false,
           })}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+        >
+          <Stack.Screen
+            name="ListCharacters"
+            component={ListCharacters}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Personagem"
+            component={Character}
+            options={({ route }) => ({
+              title: route.params.name.substr(0, 14),
+            })}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 

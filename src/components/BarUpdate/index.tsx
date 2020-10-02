@@ -1,47 +1,57 @@
 import React from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
-
-import imageDefault from "../../assets/images/5f7216d797e38.jpg";
-
+import Icon from "react-native-vector-icons/FontAwesome5";
+import Logo from "../../assets/images/marvel.svg";
 type BarUpdateProps = {
   onRefresh: () => void;
-  lengthComics: number;
-  offSet: number;
 };
 
-const ImageCustomDefault = () => {
+const BarUpdate = ({ onRefresh }: BarUpdateProps) => {
   return (
-    <Image
-      resizeMode="contain"
-      style={[{ width: 380, height: 120 }]}
-      source={imageDefault}
-    />
-  );
-};
+    <View
+      style={{
+        flexDirection: "row",
+        width: "100%",
+        backgroundColor: "#F8F8F8",
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingHorizontal: 12,
+      }}
+    >
+      <Icon.Button
+        name="bars"
+        backgroundColor="transparent"
+        color="#000"
+        size={24}
+        iconStyle={{ marginRight: 0 }}
+      />
 
-const BarUpdate = ({ onRefresh, lengthComics, offSet }: BarUpdateProps) => {
-  return (
-    <>
-      <RectButton onPress={onRefresh} style={styles.buttonRect}>
-        <Text style={styles.textUpdate}>Atualizar com + 5</Text>
-      </RectButton>
-
-      <Text style={styles.textUpdate}>
-        Estão sendo mostrados {lengthComics} da ordem {offSet}
-      </Text>
-    </>
+      <Logo width={80} height={40} fill="#f2264b" />
+      <Icon.Button
+        backgroundColor="transparent"
+        color="#000"
+        name="search"
+        size={24}
+        iconStyle={{ marginRight: 0 }}
+      />
+      {/* <RectButton onPress={onRefresh}>
+        <Text style={styles.textUpdate}></Text>
+      </RectButton> */}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   buttonRect: {
-    width: 180,
+    width: 40,
+    height: 40,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     padding: 8,
-    backgroundColor: "blue",
-    borderRadius: 12,
+    backgroundColor: "#f2264B",
+    borderRadius: 10,
     shadowColor: "white",
     shadowOffset: {
       width: -4,
@@ -49,8 +59,13 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.3,
     shadowRadius: 12,
-    elevation: 35,
+    elevation: 14,
   },
-  textUpdate: { color: "white", fontWeight: "bold", fontSize: 16 },
+  textUpdate: {
+    color: "#000000",
+    fontWeight: "bold",
+    fontSize: 16,
+    margin: 5,
+  },
 });
 export default BarUpdate;

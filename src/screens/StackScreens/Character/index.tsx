@@ -1,21 +1,22 @@
 import React from "react";
-import { Text, View } from "react-native";
-
+import { Text, StatusBar } from "react-native";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 import { RectButton } from "react-native-gesture-handler";
-// import { Container } from './styles';
-
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { CharactersDetails } from "./interfaces";
+import SafeAreaView from "react-native-safe-area-view";
 type RouteParams = {
-  DetailsCharacter: { name: string; id: number };
+  DetailsCharacter: CharactersDetails;
 };
 
 const Character = () => {
   const navigation = useNavigation();
-  const { params, name } = useRoute<
-    RouteProp<RouteParams, "DetailsCharacter">
-  >();
+  const { params } = useRoute<RouteProp<RouteParams, "DetailsCharacter">>();
+
+  const { top } = useSafeAreaInsets();
   return (
-    <View>
+    <SafeAreaView style={[{ backgroundColor: "brown" }]}>
+      <StatusBar backgroundColor="brown" />
       <RectButton
         style={{ padding: 14, backgroundColor: "red", width: 180 }}
         onPress={() => {
@@ -27,9 +28,9 @@ const Character = () => {
         </Text>
       </RectButton>
       <Text>
-        {params.name}... {"\n"} {params.id}
+        {params.description}... {"\n"} {params.id}
       </Text>
-    </View>
+    </SafeAreaView>
   );
 };
 

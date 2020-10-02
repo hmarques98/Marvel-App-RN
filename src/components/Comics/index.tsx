@@ -1,17 +1,10 @@
 import React from "react";
-import {
-  View,
-  Image,
-  ImageBackground,
-  Text,
-  StyleSheet,
-  ImagePropTypes,
-} from "react-native";
+import { View, Image, ImageBackground, Text, StyleSheet } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
-// import { Container } from './styles';
-
 import imageDefault from "../../assets/images/5f7216d797e38.jpg";
+
+import { FONT_400, FONT_700, FONT_800 } from "../../fonts/types";
 
 interface IComics {
   uriImageBackGround: string[];
@@ -104,7 +97,6 @@ const styles = StyleSheet.create({
     backgroundColor: "whitesmoke",
     height: 340,
   },
-  textUpdate: { color: "white", fontWeight: "bold", fontSize: 18 },
   ImageBackground: {
     position: "absolute",
     opacity: 0.8,
@@ -134,6 +126,7 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontWeight: "bold",
     color: "black",
+    fontFamily: FONT_800,
   },
   containerDescription: {
     backgroundColor: "whitesmoke",
@@ -158,6 +151,8 @@ const styles = StyleSheet.create({
     margin: 4,
     textAlign: "center",
     textTransform: "uppercase",
+
+    fontFamily: FONT_700,
   },
 });
 
