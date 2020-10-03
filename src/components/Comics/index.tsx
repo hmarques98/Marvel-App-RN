@@ -1,157 +1,88 @@
 import React from "react";
-import { View, Image, ImageBackground, Text, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
-import imageDefault from "../../assets/images/5f7216d797e38.jpg";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { FONT_400, FONT_700, FONT_800 } from "../../fonts/types";
 
 interface IComics {
-  uriImageBackGround: string[];
   keyItemTouchable: number;
   onPress: () => void;
   uriImageThumbnail: string[];
   extensionImage: string[];
-  seriesName: string;
-  creatorsName: string;
+  nameCharacters: string;
 }
 
 const Comics = ({
-  creatorsName,
   keyItemTouchable,
   onPress,
-  seriesName,
-  uriImageBackGround,
+  nameCharacters,
   uriImageThumbnail,
   extensionImage,
 }: IComics) => {
   return (
-    <ImageBackground
-      defaultSource={imageDefault}
-      resizeMode="contain"
-      imageStyle={styles.ImageBackground}
-      style={styles.containerImageBG}
-      source={
-        uriImageBackGround.length > 0
-          ? {
-              uri: `${uriImageBackGround}.${extensionImage}`,
-            }
-          : require("../../assets/images/5f7216d797e38.jpg")
-      }
+    <TouchableHighlight
+      containerStyle={styles.containerStyleButton}
+      underlayColor="transparent"
+      activeOpacity={0.9}
+      key={keyItemTouchable}
+      onPress={onPress}
     >
-      <TouchableHighlight
-        containerStyle={styles.containerStyleButton}
-        underlayColor="transparent"
-        activeOpacity={0.9}
-        key={keyItemTouchable}
-        onPress={onPress}
-      >
-        <View style={styles.containerImage}>
-          <Image
-            style={styles.image}
-            source={
-              uriImageThumbnail.length > 0
-                ? {
-                    uri: `${uriImageThumbnail}.${extensionImage}`,
-                  }
-                : require("../../assets/images/5f7216d797e38.jpg")
-            }
-          />
-          <View style={styles.containerDescription}>
-            <Text numberOfLines={1} style={styles.seriesName}>
-              {seriesName}
-            </Text>
-
-            <Text
-              numberOfLines={4}
-              style={styles.textDescription}
-              key={creatorsName}
-            >
-              <Text
-                style={{
-                  color: "black",
-                  fontWeight: "bold",
-                  fontStyle: "italic",
-                }}
-              >
-                Criadores
-              </Text>
-              {"\n"} {creatorsName} {"\n"}
-            </Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-    </ImageBackground>
+      <View style={styles.containerImage}>
+        <Image
+          style={styles.image}
+          source={
+            uriImageThumbnail.length > 0
+              ? {
+                  uri: `${uriImageThumbnail}.${extensionImage}`,
+                }
+              : require("../../assets/images/5f7216d797e38.jpg")
+          }
+        />
+        <LinearGradient
+          colors={["rgba(0,0,010, 0.05)", "rgba(0,0,0, 0.6)"]}
+          start={{ x: 0.5, y: 0.75 }}
+          end={{ x: 0.47, y: 1 }}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            height: "100%",
+            width: "100%",
+            padding: 8,
+            borderRadius: 19,
+            justifyContent: "flex-end",
+          }}
+        >
+          <Text numberOfLines={2} style={styles.nameCharacters}>
+            {nameCharacters}
+          </Text>
+        </LinearGradient>
+      </View>
+    </TouchableHighlight>
   );
 };
 
 const styles = StyleSheet.create({
-  containerImageBG: {
-    width: 340,
-    marginVertical: 18,
-    borderTopStartRadius: 14,
-    borderTopEndRadius: 34,
-    borderBottomColor: "white",
-    borderBottomStartRadius: 8,
-    borderWidth: 2,
-    backgroundColor: "whitesmoke",
-    height: 340,
-  },
-  ImageBackground: {
-    position: "absolute",
-    opacity: 0.8,
-    borderRadius: 18,
-    marginTop: 6,
-    height: "95%",
-  },
   containerStyleButton: {
-    justifyContent: "center",
-    flex: 1,
     alignItems: "center",
-    marginVertical: "10%",
   },
   containerImage: {
-    justifyContent: "center",
-    alignItems: "center",
+    position: "relative",
+    marginHorizontal: 8,
+    marginVertical: 16,
   },
   image: {
-    resizeMode: "contain",
-    borderRadius: 4,
-    marginBottom: 8,
+    borderRadius: 19,
     width: 140,
-    height: 190,
+    height: 220,
+    backgroundColor: "rgba(0,0,0, 0.1)",
   },
-  seriesName: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: "bold",
-    color: "black",
-    fontFamily: FONT_800,
-  },
-  containerDescription: {
-    backgroundColor: "whitesmoke",
-    opacity: 0.8,
-    width: 280,
-    height: 120,
-    marginTop: 8,
-    alignItems: "center",
-    borderRadius: 8,
-    shadowColor: "blue",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.46,
-    shadowRadius: 11.14,
-
-    elevation: 6,
-  },
-  textDescription: {
-    color: "red",
-    margin: 4,
-    textAlign: "center",
-    textTransform: "uppercase",
-
+  nameCharacters: {
+    fontSize: 17,
+    color: "#FFFFFF",
     fontFamily: FONT_700,
   },
 });

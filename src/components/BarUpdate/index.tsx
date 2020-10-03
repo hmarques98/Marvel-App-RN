@@ -7,13 +7,12 @@ type BarUpdateProps = {
   onRefresh: () => void;
 };
 
-const BarUpdate = ({ onRefresh }: BarUpdateProps) => {
+const BarUpdate = () => {
   return (
     <View
       style={{
         flexDirection: "row",
         width: "100%",
-        backgroundColor: "#F8F8F8",
         justifyContent: "space-between",
         alignItems: "center",
         paddingHorizontal: 12,
@@ -29,6 +28,7 @@ const BarUpdate = ({ onRefresh }: BarUpdateProps) => {
 
       <Logo width={80} height={40} fill="#f2264b" />
       <Icon.Button
+        underlayColor={"#f2264b"}
         backgroundColor="transparent"
         color="#000"
         name="search"

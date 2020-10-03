@@ -28,7 +28,7 @@ const Character = () => {
         </Text>
       </RectButton>
       <Text>
-        {params.description}... {"\n"} {params.id}
+        {params.name}... {"\n"} {params.id}
       </Text>
     </SafeAreaView>
   );

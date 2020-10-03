@@ -15,25 +15,14 @@ const Stack = createStackNavigator<RootStackParamList>();
 const Index = () => {
   return (
     <SafeAreaProvider>
-      <NavigationContainer theme={DarkTheme}>
+      <NavigationContainer>
         <Stack.Navigator
           headerMode="none"
           screenOptions={() => ({
-            headerStyle: {
-              backgroundColor: "#f4511e",
-            },
-            headerTintColor: "#fff",
-            headerTitleStyle: {
-              fontWeight: "bold",
-            },
             headerShown: false,
           })}
         >
-          <Stack.Screen
-            name="ListCharacters"
-            component={ListCharacters}
-            options={{ headerShown: false }}
-          />
+          <Stack.Screen name="ListCharacters" component={ListCharacters} />
           <Stack.Screen
             name="Personagem"
             component={Character}
