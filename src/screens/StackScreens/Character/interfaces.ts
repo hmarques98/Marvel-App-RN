@@ -11,28 +11,28 @@ export interface CharactersDetails {
   events?: Comics;
   urls?: URL[];
 }
-interface Comics {
+export interface Comics {
   available?: number;
   collectionURI?: string;
   items?: ComicsItem[];
   returned?: number;
 }
-interface ComicsItem {
+export interface ComicsItem {
   resourceURI?: string;
   name?: string;
 }
-interface Stories {
+export interface Stories {
   available?: number;
   collectionURI?: string;
   items?: StoriesItem[];
   returned?: number;
 }
-interface Thumbnail {
+export interface Thumbnail {
   path?: string;
   extension?: string;
 }
 
-interface StoriesItem {
+export interface StoriesItem {
   resourceURI?: string;
   name?: string;
 }
