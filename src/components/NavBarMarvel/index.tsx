@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Text, StyleSheet, View } from "react-native";
-import { RectButton } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Logo from "../../assets/images/marvel.svg";
-type BarUpdateProps = {
+import { MarvelContext } from "../../context/Marvel";
+type NavBarMarvelProps = {
   onRefresh: () => void;
 };
 
-const BarUpdate = () => {
+const NavBarMarvel = () => {
+  const { onRefresh } = useContext(MarvelContext);
   return (
     <View
       style={{
+        flex: 1,
         flexDirection: "row",
         width: "100%",
         justifyContent: "space-between",
@@ -34,38 +36,10 @@ const BarUpdate = () => {
         name="search"
         size={24}
         iconStyle={{ marginRight: 0 }}
+        onPress={onRefresh}
       />
-      {/* <RectButton onPress={onRefresh}>
-        <Text style={styles.textUpdate}></Text>
-      </RectButton> */}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  buttonRect: {
-    width: 40,
-    height: 40,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 8,
-    backgroundColor: "#f2264B",
-    borderRadius: 10,
-    shadowColor: "white",
-    shadowOffset: {
-      width: -4,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 14,
-  },
-  textUpdate: {
-    color: "#000000",
-    fontWeight: "bold",
-    fontSize: 16,
-    margin: 5,
-  },
-});
-export default BarUpdate;
+export default NavBarMarvel;

@@ -1,20 +1,20 @@
 export interface CharactersDetails {
-  id?: number;
-  name?: string;
-  description?: string;
+  id: number;
+  name: string;
+  description: string;
   modified?: string;
-  thumbnail?: Thumbnail;
+  thumbnail: Thumbnail;
   resourceURI?: string;
-  comics?: Comics;
-  series?: Comics;
-  stories?: Stories;
+  comics: Comics;
+  series: Comics;
+  stories: Stories;
   events?: Comics;
   urls?: URL[];
 }
 export interface Comics {
   available?: number;
   collectionURI?: string;
-  items?: ComicsItem[];
+  items: ComicsItem[];
   returned?: number;
 }
 export interface ComicsItem {
@@ -24,7 +24,7 @@ export interface ComicsItem {
 export interface Stories {
   available?: number;
   collectionURI?: string;
-  items?: StoriesItem[];
+  items: StoriesItem[];
   returned?: number;
 }
 export interface Thumbnail {
@@ -35,4 +35,9 @@ export interface Thumbnail {
 export interface StoriesItem {
   resourceURI?: string;
   name?: string;
+}
+
+interface URL {
+  type?: string;
+  url: string;
 }

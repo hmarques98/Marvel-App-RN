@@ -1,10 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
-import { Result } from "../components/ListComics/interfaces";
+import { ResultMarvel } from "../components/FlatListCharacter/interfaces";
 import { getApiMarvel } from "../services/api";
 import { wait } from "../utils/timer";
 
 interface IMarvelContext {
-  comics: Result[];
+  comics: ResultMarvel[];
   ŕefreshing: boolean;
   onRefresh: () => void;
 }
@@ -16,20 +16,18 @@ export const MarvelContext = createContext<IMarvelContext>(
   {} as IMarvelContext
 );
 
-export const Marvel = ({ children }: Props) => {
+export const MarvelProvider = ({ children }: Props) => {
   const [comics, setComics] = useState([]);
 
   const [ŕefreshing, setRefreshing] = useState(false);
 
-  const [limit, setLimit] = useState(20);
+  const [limit, setLimit] = useState(5);
 
-  const [offSet, setOffSet] = useState(
-    Math.floor(Math.random() * 20000) + 3000
-  );
+  const [offSet, setOffSet] = useState(Math.floor(Math.random() * 500));
 
   const fetchApi = async (limit?: number | any, offset?: number) => {
     try {
-      const response = await getApiMarvel(limit, offset);
+      const response = await getApiMarvel("characters", limit, offset);
 
       setComics(response.results);
     } catch {

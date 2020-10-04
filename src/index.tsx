@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { MarvelContext, Marvel } from "./context/Marvel";
+import { MarvelProvider } from "./context/Marvel";
 
 import ListCharacters from "./screens/StackScreens/ListCharacters";
-import Character from "./screens/StackScreens/Character";
+import Character from "./screens/StackScreens/CharacterDescription";
 
 type RootStackParamList = {
   ListCharacters: undefined;
@@ -17,7 +17,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 const Index = () => {
   return (
     <SafeAreaProvider>
-      <Marvel>
+      <MarvelProvider>
         <NavigationContainer>
           <Stack.Navigator
             headerMode="none"
@@ -26,16 +26,10 @@ const Index = () => {
             })}
           >
             <Stack.Screen name="ListCharacters" component={ListCharacters} />
-            <Stack.Screen
-              name="Personagem"
-              component={Character}
-              options={({ route }) => ({
-                title: route.params.name.substr(0, 14),
-              })}
-            />
+            <Stack.Screen name="Personagem" component={Character} />
           </Stack.Navigator>
         </NavigationContainer>
-      </Marvel>
+      </MarvelProvider>
     </SafeAreaProvider>
   );
 };

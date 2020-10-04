@@ -6,21 +6,21 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import { FONT_400, FONT_700, FONT_800 } from "../../fonts/types";
 
-interface IComics {
+interface ICharacter {
   keyItemTouchable: number;
   onPress: () => void;
-  uriImageThumbnail: string[];
-  extensionImage: string[];
+  uriImageThumbnail: string | any;
+  extensionImage: string | any;
   nameCharacters: string;
 }
 
-const Comics = ({
+const Character = ({
   keyItemTouchable,
   onPress,
   nameCharacters,
   uriImageThumbnail,
   extensionImage,
-}: IComics) => {
+}: ICharacter) => {
   return (
     <TouchableHighlight
       containerStyle={styles.containerStyleButton}
@@ -31,14 +31,11 @@ const Comics = ({
     >
       <View style={styles.containerImage}>
         <Image
+          defaultSource={require("../../assets/images/5f7216d797e38.jpg")}
           style={styles.image}
-          source={
-            uriImageThumbnail.length > 0
-              ? {
-                  uri: `${uriImageThumbnail}.${extensionImage}`,
-                }
-              : require("../../assets/images/5f7216d797e38.jpg")
-          }
+          source={{
+            uri: `${uriImageThumbnail}.${extensionImage}`,
+          }}
         />
         <LinearGradient
           colors={["rgba(0,0,010, 0.05)", "rgba(0,0,0, 0.6)"]}
@@ -87,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Comics;
+export default Character;
