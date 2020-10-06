@@ -14,7 +14,7 @@ import FlatListCharacter from "./FlatListCharacter";
 
 import NavBarMarvel from "./NavBarMarvel";
 import { MarvelContext } from "../../context/Marvel";
-import { FONT_800 } from "../../fonts/types";
+import { FONT_400, FONT_800 } from "../../fonts/types";
 
 const ListCharacters = () => {
   const { characters, comics, series, ŕefreshing, onRefresh } = useContext(
@@ -30,11 +30,29 @@ const ListCharacters = () => {
         }
       >
         <NavBarMarvel />
+
+        <View
+          style={{
+            backgroundColor: "#F8f8f8",
+            paddingHorizontal: 12,
+            marginTop: 12,
+          }}
+        >
+          <Text
+            style={{
+              color: "rgba(128,128,128, 0.5)",
+              fontFamily: FONT_400,
+              fontSize: 18,
+            }}
+          >
+            Welcome to Marvel
+          </Text>
+        </View>
         {characters.length & comics.length & series.length ? (
           <>
-            <FlatListCharacter path={characters} />
-            <FlatListCharacter path={comics} />
-            <FlatListCharacter path={series} />
+            <FlatListCharacter title="Characters Marvel" path={characters} />
+            <FlatListCharacter title="Comics Marvel" path={comics} />
+            <FlatListCharacter title="Series Marvel" path={series} />
           </>
         ) : (
           <View
@@ -44,7 +62,7 @@ const ListCharacters = () => {
               height: Dimensions.get("screen").height / 2.4,
             }}
           >
-            <Text style={styles.textUpdate}>Aguarde</Text>
+            <Text style={styles.textUpdate}>Wait. The data is loading</Text>
           </View>
         )}
       </ScrollView>

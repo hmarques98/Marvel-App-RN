@@ -30,7 +30,7 @@ export const MarvelProvider = ({ children }: Props) => {
 
   const [limit, setLimit] = useState(30);
 
-  const [offSet, setOffSet] = useState(Math.floor(Math.random() * 200));
+  const [offSet, setOffSet] = useState(Math.floor(Math.random() * 1000));
 
   const fetchApi = async (limit?: number | any, offset?: number) => {
     try {

@@ -60,11 +60,10 @@ const CharacterCard = ({
         {description ? description : ""}
       </Text>
 
-      {comicsItem && (
-        <Text style={{ fontSize: 21, fontFamily: FONT_700, color: "white" }}>
-          Comics - Históras em Quadrinhos{"\n"}
-        </Text>
-      )}
+      <Text style={{ fontSize: 21, fontFamily: FONT_700, color: "white" }}>
+        {comicsItem && "Comics Summary "} {"\n"}
+      </Text>
+
       <Text
         numberOfLines={12}
         style={{

@@ -27,6 +27,7 @@ const NavBarMarvel = () => {
         size={24}
         iconStyle={{ marginRight: 0 }}
         onPress={() => {}}
+        underlayColor={"#f2264b"}
       />
 
       <Logo width={80} height={40} fill="#f2264b" />

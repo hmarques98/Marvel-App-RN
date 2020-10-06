@@ -1,20 +1,23 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, Text } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 
 import Character from "../Character";
 import { ResultCharacters } from "./interfaces";
+import InfoTextCard from "../InfoTextCard";
 
 interface IPathMarvel {
   path: ResultCharacters[];
+  title: string;
 }
 
-const FlatListCharacter = ({ path }: IPathMarvel) => {
+const FlatListCharacter = ({ path, title }: IPathMarvel) => {
   const { navigate } = useNavigation();
 
   return (
     <>
+      <InfoTextCard infoCard={title} />
       <FlatList
         showsHorizontalScrollIndicator={false}
         horizontal

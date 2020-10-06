@@ -22,7 +22,8 @@ export const CharacterImageGradient = () => {
   return (
     <View>
       <ImageBackground
-        resizeMode="cover"
+        resizeMethod="resize"
+        resizeMode="stretch"
         source={{ uri: `${thumbnail.path}.${thumbnail.extension}` }}
         style={{ height: height }}
       >
