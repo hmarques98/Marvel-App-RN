@@ -2,7 +2,7 @@ import React from "react";
 import { StatusBar, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import SafeAreaView from "react-native-safe-area-view";
-import { CharacterImageGradient } from "../../../components/CharacterImageGradient";
+import { CharacterImageGradient } from "./CharacterImageGradient";
 
 const Character = () => {
   return (

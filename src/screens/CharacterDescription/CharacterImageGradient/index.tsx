@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import CharacterCard from "../CharacterCard";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
-import { CharactersDetails } from "../../screens/StackScreens/CharacterDescription/interfaces";
+import { CharactersDetails } from "../interfaces";
 
 type RouteParams = {
   DetailsCharacter: CharactersDetails;
@@ -12,10 +12,10 @@ type RouteParams = {
 
 export const CharacterImageGradient = () => {
   const {
-    params: { name, comics, description, thumbnail, stories },
+    params: { name, comics, description, thumbnail, stories, title },
   } = useRoute<RouteProp<RouteParams, "DetailsCharacter">>();
 
-  const { height, width } = Dimensions.get("window");
+  const { height, width } = Dimensions.get("screen");
 
   const navigation = useNavigation();
 
@@ -59,14 +59,17 @@ export const CharacterImageGradient = () => {
         </LinearGradient>
       </ImageBackground>
       <CharacterCard
-        comicsItem={comics.items.map((item) => item.name).join(`${"\n"}`)}
-        description={description}
+        comicsItem={
+          comics && comics.items.map((item) => item.name).join(`${"\n"}`)
+        }
+        description={description ? description : ""}
         storiesItem={stories.items
           ?.map((item) => item.name)
           .slice(0, 1)
           .join(`${"\n"}`)
           .replace(/[\()]/gi, "")}
         name={name}
+        title={title}
       />
     </View>
   );

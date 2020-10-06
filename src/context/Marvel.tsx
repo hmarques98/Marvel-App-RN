@@ -1,12 +1,17 @@
 import React, { createContext, useEffect, useState } from "react";
-import { ResultMarvel } from "../components/FlatListCharacter/interfaces";
+import {
+  ResultCharacters,
+  ResultComics,
+} from "../screens/ListCharacters/FlatListCharacter/interfaces";
 import { getApiMarvel } from "../services/api";
 import { wait } from "../utils/timer";
 
 interface IMarvelContext {
-  comics: ResultMarvel[];
+  characters: ResultCharacters[];
+  comics: ResultCharacters[];
+  series: ResultCharacters[];
   ŕefreshing: boolean;
-  onRefresh: () => void;
+  onRefresh?: () => void;
 }
 interface Props {
   children: React.ReactNode;
@@ -17,19 +22,25 @@ export const MarvelContext = createContext<IMarvelContext>(
 );
 
 export const MarvelProvider = ({ children }: Props) => {
+  const [characters, setCharacters] = useState([]);
   const [comics, setComics] = useState([]);
+  const [series, setSeries] = useState([]);
 
   const [ŕefreshing, setRefreshing] = useState(false);
 
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(30);
 
-  const [offSet, setOffSet] = useState(Math.floor(Math.random() * 500));
+  const [offSet, setOffSet] = useState(Math.floor(Math.random() * 200));
 
   const fetchApi = async (limit?: number | any, offset?: number) => {
     try {
-      const response = await getApiMarvel("characters", limit, offset);
+      const characters = await getApiMarvel("characters", limit, offset);
+      const series = await getApiMarvel("series", limit, offset);
+      const comics = await getApiMarvel("comics", limit, offset);
 
-      setComics(response.results);
+      setCharacters(characters.results);
+      setComics(comics.results);
+      setSeries(series.results);
     } catch {
       console.log("Error: verificar sua chamada");
     }
@@ -37,16 +48,21 @@ export const MarvelProvider = ({ children }: Props) => {
 
   const onRefresh = () => {
     setRefreshing(true);
-    setLimit(limit + 5);
+
     wait(2000).then(() => setRefreshing(false));
   };
 
   useEffect(() => {
     fetchApi(limit, offSet);
+    return () => {
+      fetchApi();
+    };
   }, [limit, offSet]);
 
   return (
-    <MarvelContext.Provider value={{ comics, ŕefreshing, onRefresh }}>
+    <MarvelContext.Provider
+      value={{ characters, ŕefreshing, comics, series, onRefresh }}
+    >
       {children}
     </MarvelContext.Provider>
   );

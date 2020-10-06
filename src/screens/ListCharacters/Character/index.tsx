@@ -4,7 +4,7 @@ import { TouchableHighlight } from "react-native-gesture-handler";
 
 import { LinearGradient } from "expo-linear-gradient";
 
-import { FONT_400, FONT_700, FONT_800 } from "../../fonts/types";
+import { FONT_400, FONT_700, FONT_800 } from "../../../fonts/types";
 
 interface ICharacter {
   keyItemTouchable: number;
@@ -12,6 +12,7 @@ interface ICharacter {
   uriImageThumbnail: string | any;
   extensionImage: string | any;
   nameCharacters: string;
+  titleComics: string;
 }
 
 const Character = ({
@@ -20,6 +21,7 @@ const Character = ({
   nameCharacters,
   uriImageThumbnail,
   extensionImage,
+  titleComics,
 }: ICharacter) => {
   return (
     <TouchableHighlight
@@ -31,7 +33,7 @@ const Character = ({
     >
       <View style={styles.containerImage}>
         <Image
-          defaultSource={require("../../assets/images/5f7216d797e38.jpg")}
+          defaultSource={require("../../../assets/images/5f7216d797e38.jpg")}
           style={styles.image}
           source={{
             uri: `${uriImageThumbnail}.${extensionImage}`,
@@ -54,7 +56,7 @@ const Character = ({
           }}
         >
           <Text numberOfLines={2} style={styles.nameCharacters}>
-            {nameCharacters}
+            {nameCharacters} {titleComics}
           </Text>
         </LinearGradient>
       </View>

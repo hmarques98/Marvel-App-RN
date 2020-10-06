@@ -2,7 +2,7 @@ import {
   Comics,
   Thumbnail,
   Stories,
-} from "../../screens/StackScreens/CharacterDescription/interfaces";
+} from "../../CharacterDescription/interfaces";
 
 // export interface Marvel {
 //   results: Result[];
@@ -13,9 +13,10 @@ export interface IThumbnail {
   extension: string;
 }
 
-export interface ResultMarvel {
+export interface ResultCharacters {
   id: number;
   name: string;
+  title: string;
   description: string;
   modified?: string;
   thumbnail: Thumbnail;
@@ -25,4 +26,12 @@ export interface ResultMarvel {
   stories?: Stories;
   events?: Comics;
   urls?: URL[];
+}
+export interface ResultComics {
+  id: number;
+  title: string;
+  description: string;
+  modified?: string;
+  thumbnail: Thumbnail;
+  resourceURI?: string;
 }

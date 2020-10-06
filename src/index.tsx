@@ -4,12 +4,12 @@ import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { MarvelProvider } from "./context/Marvel";
 
-import ListCharacters from "./screens/StackScreens/ListCharacters";
-import Character from "./screens/StackScreens/CharacterDescription";
+import ListCharacters from "./screens/ListCharacters";
+import Character from "./screens/CharacterDescription";
 
 type RootStackParamList = {
   ListCharacters: undefined;
-  Personagem: { name: string };
+  Details: { name: string };
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -26,7 +26,7 @@ const Index = () => {
             })}
           >
             <Stack.Screen name="ListCharacters" component={ListCharacters} />
-            <Stack.Screen name="Personagem" component={Character} />
+            <Stack.Screen name="Details" component={Character} />
           </Stack.Navigator>
         </NavigationContainer>
       </MarvelProvider>

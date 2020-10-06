@@ -1,7 +1,8 @@
 export interface CharactersDetails {
   id: number;
   name: string;
-  description: string;
+  title: string;
+  description?: string;
   modified?: string;
   thumbnail: Thumbnail;
   resourceURI?: string;

@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import Logo from "../../assets/images/marvel.svg";
-import { MarvelContext } from "../../context/Marvel";
+import Logo from "../../../assets/images/marvel.svg";
+import { MarvelContext } from "../../../context/Marvel";
 type NavBarMarvelProps = {
   onRefresh: () => void;
 };
 
 const NavBarMarvel = () => {
-  const { onRefresh } = useContext(MarvelContext);
+  // const { onRefresh } = useContext(MarvelContext);
   return (
     <View
       style={{
@@ -26,6 +26,7 @@ const NavBarMarvel = () => {
         color="#000"
         size={24}
         iconStyle={{ marginRight: 0 }}
+        onPress={() => {}}
       />
 
       <Logo width={80} height={40} fill="#f2264b" />
@@ -36,7 +37,8 @@ const NavBarMarvel = () => {
         name="search"
         size={24}
         iconStyle={{ marginRight: 0 }}
-        onPress={onRefresh}
+        onPress={() => {}}
+        // onPress={onRefresh}
       />
     </View>
   );
